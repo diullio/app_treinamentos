@@ -101,18 +101,14 @@ class FrontEnd(QDialog):
             for i in range(4, len(dataframe.loc[6]), 3):
                 for j in range(len(dataframe)):
                     if type(dataframe.loc[j][0]) == type(1):
-                        if levatamento_pop == dataframe.loc[j - 2][i]:
-                            try:
-                                if dataframe.loc[j][i] == 'X':
-                                    dados['Matrícula'].append(dataframe.loc[j][0])
-                                    dados['Nome'].append(dataframe.loc[j][1])
-                                    dados['Cargo'].append(dataframe.loc[j][3])
-                                    dados['CDC'].append(dataframe.loc[j][2])
-                                    dados['POP'].append(dataframe.loc[j - 2][i])
-                                    dados['Versão'].append(dataframe.loc[j - 3][i])
-                                    dados['Matriz'].append(arquivo)
-                            except IndexError:
-                                pass
+                        if dataframe.loc[j - 2][i] == levatamento_pop and dataframe.loc[j][i] == 'X':
+                            dados['Matrícula'].append(dataframe.loc[j][0])
+                            dados['Nome'].append(dataframe.loc[j][1])
+                            dados['Cargo'].append(dataframe.loc[j][3])
+                            dados['CDC'].append(dataframe.loc[j][2])
+                            dados['POP'].append(dataframe.loc[j - 2][i])
+                            dados['Versão'].append(dataframe.loc[j - 3][i])
+                            dados['Matriz'].append(arquivo)
         except Exception as e:
             print(f"Ocorreu uma exceção: {e}") 
     
